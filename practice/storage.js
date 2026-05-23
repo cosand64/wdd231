@@ -1,6 +1,19 @@
 // storage.js
 let tasks = [];
 
+function setLocalStorage(key,data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getLocalStorage(key) {
+    const storedValue = localStorage.setItem(key);
+    if (storedValue) {
+        return JSON.parse(storedValue);
+    }
+
+    return [];
+}
+
 function taskTemplate(task) {
   return `
     <li ${task.completed ? 'class="strike"' : ""}>
@@ -26,6 +39,7 @@ function newTask() {
   const task = document.querySelector("#todo").value;
   // add it to our arrays tasks
   tasks.push({ detail: task, completed: false });
+  setLocalStorage("todos", tasks);
   // render out the list
   renderTasks(tasks);
 }
@@ -37,6 +51,7 @@ function removeTask(taskElement) {
     (task) => task.detail != taskElement.querySelector('p').innerText
   );
   taskElement.remove();
+  setLocalStorage("todos", tasks);
 }
 
 function completeTask(taskElement) {
@@ -46,6 +61,7 @@ function completeTask(taskElement) {
   tasks[taskIndex].completed = tasks[taskIndex].completed ? false : true;
   taskElement.classList.toggle("strike");
   console.log(tasks);
+  setLocalStorage("todos", tasks)
 }
 
 function manageTasks(e) {
@@ -72,11 +88,16 @@ function userNameHandler() {
   setUserName();
 }
 
+function init(){
+    tasks = getLocalStorage("todos");
+    renderTasks(tasks);
+    setUserName();
+}
+
 // Add your event listeners here
 document.querySelector("#submitTask").addEventListener("click", newTask);
 document.querySelector("#todoList").addEventListener("click", manageTasks);
 document.querySelector("#userNameButton").addEventListener("click", userNameHandler);
 
 // render  the initial list of tasks (if any) when the page loads
-renderTasks(tasks);
-setUserName();
+init();
