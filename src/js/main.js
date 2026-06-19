@@ -13,7 +13,7 @@ function setParkIntro(data) {
 function setParkInfoLinks(data) {
   const infoEl = document.querySelector(".info");
   const html = data.map(mediaCardTemplate);
-  // join the array of strings into one string and insert it into the section
+  
   infoEl.insertAdjacentHTML("afterbegin", html.join(""));
 }
 
@@ -25,32 +25,4 @@ async function init() {
   setParkInfoLinks(links);
 }
 
-function enableNavigation() {
-  const menuButton = document.querySelector("#global-nav-toggle");
-  const subMenuToggles = document.querySelectorAll(
-    ".global-nav__split-button__toggle"
-  );
-  // when the main menu button is clicked:
-  menuButton.addEventListener("click", (ev) => {
-    let target = ev.target;
-    // toggle the show class on the global-nav
-    document.querySelector(".global-nav").classList.toggle("show");
-    // check to see if ev.target is the button or something inside the button
-    if (target.tagName != "BUTTON") {
-      target = target.closest("button");
-    }
-    // check to see if the menu just opened or closed
-    if (document.querySelector(".global-nav").classList.contains("show")) {
-      // if opened then set the aria-expanded attribute to true
-      target.setAttribute("aria-expanded", true);
-    } else {
-      // if closed then set the aria-expanded attribute to false
-      target.setAttribute("aria-expanded", false);
-    }
-
-    console.log("toggle");
-  });
-}
-
 init();
-enableNavigation();
