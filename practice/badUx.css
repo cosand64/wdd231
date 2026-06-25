@@ -1,0 +1,77 @@
+/* badUx.css */
+body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+  background-color: hotpink;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #111;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #006400; 
+  text-align: center;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 20px;
+}
+
+img {
+  display: block;
+  width: auto;
+  max-height: 200px;
+  border-radius: 8px; 
+  margin: 0 auto;
+
+}
+
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  max-width: 400px;
+}
+
+input[type="text"], button {
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: 16px;
+  border: 2px solid #006400;
+  border-radius: 4px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+}
+
+button {
+  background-color: #006400;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #004d00;
+}
+
+/* List Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+li {
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
